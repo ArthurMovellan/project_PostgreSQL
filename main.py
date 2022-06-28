@@ -190,8 +190,28 @@ async def get_status():
     """
     return 1
 
-@server.post('/matches')
-async def get_matches(data: str = Form(...)):
+@server.get('/customers')
+async def get_customers():
+
+    with psycopg2.connect(
+                    user='postgres',
+                    password='example',
+                    host='dataBase',
+                    port='5432',
+                    dbname='international_results') as connection:
+
+        connection.autocommit = True
+
+        sql_file = open('get_customers.sql','r')
+
+        with connection.cursor() as cursor:
+        # list all tables in this database
+            cursor.execute(sql_file.read())
+            results = cursor.fetchall()
+            return results
+
+@server.get('/items')
+async def get_items(data: str = Form(...)):
 
     y = json.loads(data)
     function_name = y['function']

@@ -24,3 +24,6 @@ docker exec -it test_container_test  bash -c "airflow tasks test etl_LASSOULI te
 # airflow trigger_dag
 docker exec -i project_postgresql_dataBase_1 psql international_results postgres < dummy.sql
 docker exec -it  test_container_test  bash -c "python3 main.py"
+docker exec -it  test_container_test  bash -c "cd frontend"
+docker exec -it  test_container_test  bash -c "npm install"
+docker exec -it  test_container_test  bash -c "npm start"

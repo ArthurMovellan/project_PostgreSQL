@@ -14,6 +14,8 @@ RUN airflow connections add 'postgre_sql_db' \
 #COPY results.csv /root/airflow/
 #COPY shootouts.csv /root/airflow/
 ADD main.py .
+ADD get_customers.sql .
+ADD frontend/ frontend/ 
 CMD airflow scheduler -D
 CMD airflow webserver -D 
 EXPOSE 8080
